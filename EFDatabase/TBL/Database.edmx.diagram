@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1d53bdf2a44a461d83e39762c7ae62ea" Name="Diagram1">
+        <EntityTypeShape EntityType="EmployeeManagementModel.Education" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmployeeManagementModel.Employee" Width="1.5" PointX="4.625" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmployeeManagementModel.State" Width="1.5" PointX="8" PointY="1.5" IsExpanded="true" />
+        <AssociationConnector Association="EmployeeManagementModel.FK_Employee_States" ManuallyRouted="false" />
+        <AssociationConnector Association="EmployeeManagementModel.EmployeeEducation" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
