@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="EmployeeManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="EmployeeManagementModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Education">
           <Key>
             <PropertyRef Name="EducationID" />
@@ -78,7 +78,7 @@ warning 6002: The table/view 'EmployeeManagement.dbo.EmployeeEducation' does not
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="EmployeeManagementModelStoreContainer">
+        <EntityContainer Name="EmployeeManagementModel1StoreContainer">
           <EntitySet Name="Education" EntityType="Self.Education" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="States" EntityType="Self.States" Schema="dbo" store:Type="Tables" />
@@ -101,10 +101,11 @@ warning 6002: The table/view 'EmployeeManagement.dbo.EmployeeEducation' does not
             <End Role="EmployeeEducation" EntitySet="EmployeeEducation" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="EmployeeManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="EmployeeManagementModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Education">
           <Key>
             <PropertyRef Name="EducationID" />
@@ -124,9 +125,9 @@ warning 6002: The table/view 'EmployeeManagement.dbo.EmployeeEducation' does not
           <Property Name="Age" Type="Int32" Nullable="false" />
           <Property Name="IsMale" Type="Boolean" Nullable="false" />
           <Property Name="State" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="155" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="State1" Relationship="Self.FK_Employee_States" FromRole="Employee" ToRole="States" />
           <NavigationProperty Name="Educations" Relationship="Self.EmployeeEducation" FromRole="Employee" ToRole="Education" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="155" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="State">
           <Key>
@@ -152,7 +153,7 @@ warning 6002: The table/view 'EmployeeManagement.dbo.EmployeeEducation' does not
           <End Role="Education" Type="Self.Education" Multiplicity="*" />
           <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="EmployeeManagementEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="EmployeeManagementContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Educations" EntityType="Self.Education" />
           <EntitySet Name="Employees" EntityType="Self.Employee" />
           <EntitySet Name="States" EntityType="Self.State" />
@@ -170,9 +171,9 @@ warning 6002: The table/view 'EmployeeManagement.dbo.EmployeeEducation' does not
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="EmployeeManagementModelStoreContainer" CdmEntityContainer="EmployeeManagementEntities">
+        <EntityContainerMapping StorageEntityContainer="EmployeeManagementModel1StoreContainer" CdmEntityContainer="EmployeeManagementContext">
           <EntitySetMapping Name="Educations">
-            <EntityTypeMapping TypeName="EmployeeManagementModel.Education">
+            <EntityTypeMapping TypeName="EmployeeManagementModel1.Education">
               <MappingFragment StoreEntitySet="Education">
                 <ScalarProperty Name="EducationID" ColumnName="EducationID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -180,9 +181,8 @@ warning 6002: The table/view 'EmployeeManagement.dbo.EmployeeEducation' does not
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Employees">
-            <EntityTypeMapping TypeName="EmployeeManagementModel.Employee">
+            <EntityTypeMapping TypeName="EmployeeManagementModel1.Employee">
               <MappingFragment StoreEntitySet="Employee">
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
@@ -190,18 +190,19 @@ warning 6002: The table/view 'EmployeeManagement.dbo.EmployeeEducation' does not
                 <ScalarProperty Name="Age" ColumnName="Age" />
                 <ScalarProperty Name="IsMale" ColumnName="IsMale" />
                 <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="States">
-            <EntityTypeMapping TypeName="EmployeeManagementModel.State">
+            <EntityTypeMapping TypeName="EmployeeManagementModel1.State">
               <MappingFragment StoreEntitySet="States">
                 <ScalarProperty Name="StateID" ColumnName="StateID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="EmployeeEducation" TypeName="EmployeeManagementModel.EmployeeEducation" StoreEntitySet="EmployeeEducation">
+          <AssociationSetMapping Name="EmployeeEducation" TypeName="EmployeeManagementModel1.EmployeeEducation" StoreEntitySet="EmployeeEducation">
             <EndProperty Name="Education">
               <ScalarProperty Name="EducationID" ColumnName="EducationID" />
             </EndProperty>

@@ -13,9 +13,9 @@ namespace EFDatabase.TBL
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class EmployeeManagementEntities : DbContext
+    public partial class EmployeeManagementContext : DbContext
     {
-        public EmployeeManagementEntities()
+        public EmployeeManagementContext()
             : base("Server = (localdb)\\MSSQLLocalDB; Database=EmployeeManagement;Integrated Security = true;")
         {
         }

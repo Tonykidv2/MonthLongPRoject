@@ -11,13 +11,13 @@ namespace Debugger
     {
         static void Main(string[] args)
         {
-            EmployeeManagementEntities db = new EmployeeManagementEntities();
+            EmployeeManagementContext db = new EmployeeManagementContext();
 
-            
-            Employee emp = new Employee();
+            Employee emp;
             Random rnd = new Random();
             for (int i = 0; i < 1000; i++)
             {
+                emp = new Employee();
                 emp.Name = "Name: " + i;
                 int booo = rnd.Next(1);
                 if (booo == 1)
@@ -29,9 +29,12 @@ namespace Debugger
                 emp.DateofBirth = DateTime.Now;
                 emp.Email = "Something00" + i + "@infoSys.com";
                 emp.State = rnd.Next(1, 50);
-                emp.Educations.Add(db.Educations.Single(p => p.EducationID == 4));
+                emp.State1 = db.States.First(p => p.StateID == emp.State);
+                int edu = (rnd.Next(1, 7));
+                emp.Educations.Add(db.Educations.Single(p => p.EducationID == edu));
+                db.Employees.Add(emp);
             }
-            Console.WriteLine(emp.Name);
+            db.SaveChanges();
             Console.ReadLine();
         }
     }
