@@ -10,7 +10,6 @@ using WebApplication1.Model;
 namespace DatabaseService.Controllers
 {
     [Route("api/Employee/")]
-    
     public class EmployeeController : ApiController
     {
         EmployeeManagementContext dbContext = new EmployeeManagementContext();
