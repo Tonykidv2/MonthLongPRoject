@@ -50,9 +50,25 @@ namespace DatabaseService.Controllers
         }
 
         // POST api/<controller>
-        public void Post([FromBody]StateModel value)
+        [HttpPost]
+        public bool Post([FromBody]StateModel value)
         {
+            
+            try
+            {
+                State sta = new State()
+                {
+                    Name = value.state
+                };
+                dbContext.States.Add(sta);
+                dbContext.SaveChanges();
 
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         // PUT api/<controller>/5
@@ -60,9 +76,38 @@ namespace DatabaseService.Controllers
         {
         }
 
+        [HttpDelete]
         // DELETE api/<controller>/5
-        public void Delete(int id)
+        public bool Delete(int id)
         {
+            try
+            {
+                State sta = dbContext.States.Find(id);
+                dbContext.States.Remove(sta);
+                dbContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        [HttpDelete]
+        // DELETE api/<controller>/5
+        public bool Delete(string value)
+        {
+            try
+            {
+                State sta = dbContext.States.Single(p =>p.Name == value);
+                dbContext.States.Remove(sta);
+                dbContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }
