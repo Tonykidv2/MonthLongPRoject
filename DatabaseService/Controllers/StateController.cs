@@ -16,15 +16,41 @@ namespace DatabaseService.Controllers
         EmployeeManagementContext dbContext = new EmployeeManagementContext();
         // GET api/<controller>
         [HttpGet]
-        public string Get()
+        public HttpResponseMessage Get()
         {
-            return "State API Running";
+            return Request.CreateResponse(HttpStatusCode.Found, "State API Running");
+        }
+
+        [HttpGet]
+        [Route("api/State/GetAll")]
+        public HttpResponseMessage GetAll()
+        {
+            List<StateModel> staMList = new List<StateModel>();
+            List<State> staList = dbContext.States.ToList();
+
+            EmployeeController empCon = new EmployeeController();
+            for (int i = 0; i < staList.Count; i++)
+            {
+                StateModel Mod = new StateModel()
+                {
+                    state = staList[i].Name,
+                    ID = staList[i].StateID
+                };
+                for (int z = 0; z < staList[i].Employees.Count; z++)
+                {
+                    EmployeeModel empMod = empCon.Get(staList[i].Employees.ToList()[z].EmployeeID);
+                    Mod.employees.Add(empMod);
+                }
+                staMList.Add(Mod);
+            }
+            return Request.CreateResponse(HttpStatusCode.OK, staMList);
         }
 
         // GET api/<controller>/5
         [HttpGet]
-        public StateModel Get(int id)
+        public HttpResponseMessage Get(int id)
         {
+            
             try
             {
                 State sta = dbContext.States.Find(id);
@@ -40,20 +66,19 @@ namespace DatabaseService.Controllers
                     EmployeeModel EmpMod = empCon.Get(sta.Employees.ToList()[i].EmployeeID);
                     stm.employees.Add(EmpMod);
                 }
-                return stm;
+                return Request.CreateResponse(HttpStatusCode.OK, stm);
             }
             catch
             {
-                return null;
+                return Request.CreateResponse(HttpStatusCode.Conflict);
             }
             
         }
 
         // POST api/<controller>
         [HttpPost]
-        public bool Post([FromBody]StateModel value)
-        {
-            
+        public HttpResponseMessage Post([FromBody]StateModel value)
+        { 
             try
             {
                 State sta = new State()
@@ -63,50 +88,51 @@ namespace DatabaseService.Controllers
                 dbContext.States.Add(sta);
                 dbContext.SaveChanges();
 
-                return true;
+                return Request.CreateResponse(HttpStatusCode.OK, true);
             }
             catch
             {
-                return false;
+                return Request.CreateResponse(HttpStatusCode.Conflict, false);
             }
         }
 
         // PUT api/<controller>/5
         public void Put(int id, [FromBody]string value)
         {
+
         }
 
         [HttpDelete]
         // DELETE api/<controller>/5
-        public bool Delete(int id)
+        public HttpResponseMessage Delete(int id)
         {
             try
             {
                 State sta = dbContext.States.Find(id);
                 dbContext.States.Remove(sta);
                 dbContext.SaveChanges();
-                return true;
+                return Request.CreateResponse(HttpStatusCode.OK, true);
             }
             catch
             {
-                return false;
+                return Request.CreateResponse(HttpStatusCode.Conflict, false);
             }
         }
 
         [HttpDelete]
         // DELETE api/<controller>/5
-        public bool Delete(string value)
+        public HttpResponseMessage Delete(string value)
         {
             try
             {
                 State sta = dbContext.States.Single(p =>p.Name == value);
                 dbContext.States.Remove(sta);
                 dbContext.SaveChanges();
-                return true;
+                return Request.CreateResponse(HttpStatusCode.OK, true);
             }
             catch
             {
-                return false;
+                return Request.CreateResponse(HttpStatusCode.Conflict, false);
             }
         }
     }
