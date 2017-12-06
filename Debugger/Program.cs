@@ -11,6 +11,12 @@ namespace Debugger
     {
         static void Main(string[] args)
         {
+            //PeopleSeed();
+            //Console.ReadLine();
+        }
+
+        static public void PeopleSeed()
+        {
             EmployeeManagementContext db = new EmployeeManagementContext();
 
             Employee emp;
@@ -35,7 +41,6 @@ namespace Debugger
                 db.Employees.Add(emp);
             }
             db.SaveChanges();
-            Console.ReadLine();
         }
     }
 }

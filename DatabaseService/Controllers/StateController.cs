@@ -96,10 +96,32 @@ namespace DatabaseService.Controllers
             }
         }
 
+        [HttpPut]
         // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
+        public HttpResponseMessage Put(int id, [FromBody]StateModel value)
         {
+            try
+            {
+                State ToBeUpdated = dbContext.States.Find(id);
+                if (ToBeUpdated != null)
+                {
+                    ToBeUpdated.Name = value.state;
+                    ToBeUpdated.Employees.Clear();
+                    EmployeeController empCon = new EmployeeController();
+                    for (int i = 0; i < value.employees.Count; i++)
+                    {
+                        Employee emp = dbContext.Employees.Find(value.employees[i].ID);
+                        ToBeUpdated.Employees.Add(emp);
+                    }
+                    return Request.CreateResponse(HttpStatusCode.OK, true);
+                }
+            }
+            catch
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, false);
+            }
 
+            return Request.CreateResponse(HttpStatusCode.NotModified, false);
         }
 
         [HttpDelete]

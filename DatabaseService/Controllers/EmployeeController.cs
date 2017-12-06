@@ -38,6 +38,40 @@ namespace DatabaseService.Controllers
             return empModel;
         }
 
+        [HttpGet]
+        [Route("api/employee/GetAll")]
+        public HttpResponseMessage GetAll()
+        {
+            List<EmployeeModel> empMList = new List<EmployeeModel>();
+            try
+            {
+                List<Employee> empList = dbContext.Employees.ToList();
+
+                for (int i = 0; i < empList.Count; i++)
+                {
+                    EmployeeModel Mod = new EmployeeModel();
+                    Mod.Age = empList[i].Age;
+                    Mod.DOB = empList[i].DateofBirth;
+                    Mod.Email = empList[i].Email;
+                    Mod.ID = empList[i].EmployeeID;
+                    Mod.isMale = empList[i].IsMale;
+                    Mod.Name = empList[i].Name;
+                    Mod.PhoneNumber = (int)empList[i].PhoneNumber;
+                    Mod.state = new StateModel() { ID = empList[i].State1.StateID, state = empList[i].State1.Name };
+
+                    empMList.Add(Mod);
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK, empMList);
+            }
+            catch
+            {
+                return Request.CreateResponse(HttpStatusCode.Conflict, empMList);
+            }
+
+        }
+
+
         // POST api/<controller>
         [HttpPost]
         public bool Post([FromBody]EmployeeModel value)
