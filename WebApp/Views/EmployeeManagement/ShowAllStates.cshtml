@@ -1,0 +1,29 @@
+﻿<h1>Show All States</h1>
+<table align="center">
+    <thead>
+        <tr>
+            <th> ID </th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Age</th>
+            <th>DOB</th>
+            <th>State</th>
+            <th>Gender</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr data-ng-repeat="Sta in $scope.States">
+            <td>{{Sta.ID}}</td>
+            <td>{{Sta.Name}}</td>
+            <td>{{Sta.Email}}</td>
+            <td>{{Sta.PhoneNumber}}</td>
+            <td>{{Sta.Age}}</td>
+            <td>{{Sta.DOB}}</td>
+            <td>N/A</td>
+            <td>N/A</td>
+        </tr>
+    </tbody>
+</table>
+
+<td>{{States}}</td>

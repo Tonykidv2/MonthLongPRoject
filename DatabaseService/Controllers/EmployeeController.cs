@@ -22,9 +22,10 @@ namespace DatabaseService.Controllers
 
         // GET api/<controller>/5
         [HttpGet]
+        [Route("api/employee/{id}")]
         public EmployeeModel Get(int id)
         {
-            Employee emp = dbContext.Employees.Single(p => p.EmployeeID == id);
+            Employee emp = dbContext.Employees.Find(id);
             EmployeeModel empModel = new EmployeeModel()
             {
                 ID = id,
@@ -42,6 +43,7 @@ namespace DatabaseService.Controllers
         [Route("api/employee/GetAll")]
         public HttpResponseMessage GetAll()
         {
+            //return Request.CreateResponse(HttpStatusCode.OK, dbContext.Employees);
             List<EmployeeModel> empMList = new List<EmployeeModel>();
             try
             {

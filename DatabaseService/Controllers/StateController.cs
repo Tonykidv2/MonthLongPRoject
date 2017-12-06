@@ -36,11 +36,11 @@ namespace DatabaseService.Controllers
                     state = staList[i].Name,
                     ID = staList[i].StateID
                 };
-                for (int z = 0; z < staList[i].Employees.Count; z++)
-                {
-                    EmployeeModel empMod = empCon.Get(staList[i].Employees.ToList()[z].EmployeeID);
-                    Mod.employees.Add(empMod);
-                }
+                //for (int z = 0; z < staList[i].Employees.Count; z++)
+                //{
+                //    EmployeeModel empMod = empCon.Get(staList[i].Employees.ToList()[z].EmployeeID);
+                //    Mod.employees.Add(empMod);
+                //}
                 staMList.Add(Mod);
             }
             return Request.CreateResponse(HttpStatusCode.OK, staMList);

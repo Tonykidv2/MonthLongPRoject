@@ -11,6 +11,7 @@ using WebApplication1.Model;
 namespace DatabaseService.Controllers
 {
     [Route("api/Education/")]
+    [AllowAnonymous]
     public class EducationController : ApiController
     {
         EmployeeManagementContext dbContext = new EmployeeManagementContext();
