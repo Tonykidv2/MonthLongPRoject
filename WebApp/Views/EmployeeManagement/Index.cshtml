@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<body data-ng-app="myApp">
+@section scripts{
+    <script src="https://code.angularjs.org/1.6.7/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.6.7/angular-route.min.js"></script>
+    <script src="~/MyScripts/Module.js"></script>
+    <script src="~/MyScripts/Services.js"></script>
+    <script src="~/MyScripts/ShowEmployeesController.js"></script>
+    <script src="~/MyScripts/ShowStatesController.js"></script>
+    }
+    <a href="showemployees">Show All Employees</a>
+    <a href="showstates">Show All States</a>
+    <div data-ng-view></div>
+</body>
+
+

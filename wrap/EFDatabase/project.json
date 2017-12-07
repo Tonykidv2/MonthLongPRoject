@@ -1,0 +1,15 @@
+{
+  "version": "1.0.0-*",
+  "frameworks": {
+    "net452": {
+      "wrappedProject": "../../EFDatabase/EFDatabase.csproj",
+      "bin": {
+        "assembly": "../../EFDatabase/obj/{configuration}/EFDatabase.dll",
+        "pdb": "../../EFDatabase/obj/{configuration}/EFDatabase.pdb"
+      },
+      "dependencies": {
+        "EntityFramework": "6.1.3"
+      }
+    }
+  }
+}
