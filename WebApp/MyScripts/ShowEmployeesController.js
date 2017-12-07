@@ -4,9 +4,11 @@
 
     function loadAllEmployees() {
         var promiseGetEmployees = SPAServices.getEmployees(SharedData.value).
-            then(function (pl) { $scope.Employees = pl.data },
-                function (errorPl) {
-                    $scope.error = errorPl;
-            });
+            then(SuccessError);
+
+
+        function SuccessError(respond) {
+            $scope.Employees = respond.data;
+        }
     }
 });

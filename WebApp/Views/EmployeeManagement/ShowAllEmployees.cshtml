@@ -1,1 +1,46 @@
 ﻿<h1> Show All Employees</h1>
+<div>
+    Search By Age <input type="text" ng-model="SearchAge" /> {{SearchAge}}
+</div>
+<div>
+    Search By Name <input type="text" ng-model="SearchName" /> {{SearchName}}
+</div>
+<div>
+    Search By Phone Number <input type="text" ng-model="SearchNumber" /> {{SearchNumber}}
+</div>
+@*<div>
+    Search By Gender <input type="text" ng-model="SearchGen" /> {{SearchGen}}
+</div>*@
+<div>
+    Search By State <input type="text" ng-model="SearchState" /> {{SearchState}}
+</div>
+<div>
+    Search By ID <input type="text" ng-model="SearchID" /> {{SearchID}}
+</div>
+<table align="center">
+    <thead>
+        <tr>
+            <th align="center"> ID </th>
+            <th align="center">Name</th>
+            <th align="center">Email</th>
+            <th align="center">Phone Number</th>
+            <th align="center">Age</th>
+            <th align="center">Date of Birth</th>
+            <th align="center">State</th>
+            <th align="center">Gender</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr data-ng-repeat="Emp in Employees | filter:{Age: SearchAge, state:{state: SearchState}, ID: SearchID, Name: SearchName, PhoneNumber: SearchNumber }">
+            <td align="center">{{Emp.ID}}</td>
+            <td align="center">{{Emp.Name}}</td>
+            <td align="center">{{Emp.Email}}</td>
+            <td align="center">{{Emp.PhoneNumber}}</td>
+            <td align="center">{{Emp.Age}}</td>
+            <td align="center">{{Emp.DOB}}</td>
+            <td align="center">{{Emp.state.state}}</td>
+            <td data-ng-if="Emp.isMale == 1" align="center">Male</td>
+            <td data-ng-if="Emp.isMale == 0" align="center">Female</td>
+        </tr>
+    </tbody>
+</table>

@@ -8,7 +8,8 @@
             then(SuccessError);
 
         function SuccessError(respond){
-            return respond.data;
+
+            $scope.States = respond.data;
         };
     }
 });

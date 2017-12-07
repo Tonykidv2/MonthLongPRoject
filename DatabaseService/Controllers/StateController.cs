@@ -23,6 +23,7 @@ namespace DatabaseService.Controllers
 
         [HttpGet]
         [Route("api/State/GetAll")]
+        [AllowAnonymous]
         public HttpResponseMessage GetAll()
         {
             List<StateModel> staMList = new List<StateModel>();
