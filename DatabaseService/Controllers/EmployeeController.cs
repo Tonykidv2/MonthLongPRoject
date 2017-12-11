@@ -6,10 +6,13 @@ using System.Net.Http;
 using System.Web.Http;
 using EFDatabase.TBL;
 using WebApplication1.Model;
+using System.Web.Http.Description;
+using System.Web.Http.Cors;
 
 namespace DatabaseService.Controllers
 {
     [Route("api/Employee/")]
+    [EnableCors(origins: "*", headers:"*", methods:"*")]
     public class EmployeeController : ApiController
     {
         EmployeeManagementContext dbContext = new EmployeeManagementContext();
@@ -103,6 +106,7 @@ namespace DatabaseService.Controllers
 
         // PUT api/<controller>/5
         [HttpPut]
+        [Route("api/employee/{id}")]
         public bool Put(int id, [FromBody]EmployeeModel value)
         {
             try
@@ -133,7 +137,8 @@ namespace DatabaseService.Controllers
 
         // DELETE api/<controller>/5
         [HttpDelete]
-        public string Delete(int id)
+        [Route("api/employee/{id}")]
+        public HttpResponseMessage Delete(int id)
         {
             try
             {
@@ -143,16 +148,22 @@ namespace DatabaseService.Controllers
                     dbContext.Employees.Remove(TobeDeleted);
                     dbContext.SaveChanges();
 
-                    return "Entry Deleted";
+                    return Request.CreateResponse(HttpStatusCode.OK, "Entry Delete");
                 }
                 else
-                    return "Nothing Deleted";
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "Nothing Deleted");
 
             }
             catch
             {
-                return "Error";
+                return Request.CreateResponse(HttpStatusCode.Conflict, "Error");
             }
+        }
+
+        [HttpOptions]
+        public HttpResponseMessage Options(int id)
+        {
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
     }
 }

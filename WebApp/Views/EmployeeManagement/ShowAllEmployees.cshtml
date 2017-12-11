@@ -28,6 +28,7 @@
             <th align="center">Date of Birth</th>
             <th align="center">State</th>
             <th align="center">Gender</th>
+            <th align="center">Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -41,6 +42,10 @@
             <td align="center">{{Emp.state.state}}</td>
             <td data-ng-if="Emp.isMale == 1" align="center">Male</td>
             <td data-ng-if="Emp.isMale == 0" align="center">Female</td>
+            <td align="center">
+                <input type="button" value="Edit" data-ng-click="editEmployee(Emp.ID)" />
+                <input type="button" value="Delete" data-ng-click="deleteEmployee(Emp.ID)" />
+            </td>
         </tr>
     </tbody>
 </table>

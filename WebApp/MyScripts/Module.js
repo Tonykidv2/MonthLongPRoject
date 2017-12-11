@@ -12,11 +12,22 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
             templateUrl: 'EmployeeManagement/ShowEmployees',
             controller: 'ShowEmployeesController'
         });
-    $routeProvider.when('/showstates', 
+    $routeProvider.when('/showstates',
         {
             templateUrl: 'EmployeeManagement/ShowStates',
             controller: 'ShowStatesController'
-        })
+        });
+    $routeProvider.when('/editEmployee',
+        {
+            templateUrl: 'EmployeeManagement/EEmployee',
+            controller: 'EditEmployeeController'
+        });
+    $routeProvider.when('/deleteEmployee',
+        {
+            templateUrl: 'EmployeeManagement/DEmployee',
+            controller: 'DeleteEmployeeController'
+        });
+
     $routeProvider.otherwise(
         {
             redirectTo: '/'
@@ -25,3 +36,11 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
     $locationProvider.html5Mode({ enabled: true, requireBase: false}).hashPrefix('!');
 
 }]);
+
+//app.config(['$httpProvider', function ($httpProvider) {
+//    $httpProvider.defaults.headers.common = {};
+//    $httpProvider.defaults.headers.post = {};
+//    $httpProvider.defaults.headers.put = {};
+//    $httpProvider.defaults.headers.patch = {};
+//    $httpProvider.defaults.headers.delete = {};
+//}]);
