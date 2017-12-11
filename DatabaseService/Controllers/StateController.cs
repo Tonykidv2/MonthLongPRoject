@@ -5,12 +5,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using WebApplication1.Model;
 
 namespace DatabaseService.Controllers
 {
     
     [Route("api/State/")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class StateController : ApiController
     {
         EmployeeManagementContext dbContext = new EmployeeManagementContext();

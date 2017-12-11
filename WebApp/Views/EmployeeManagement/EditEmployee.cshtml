@@ -1,1 +1,34 @@
-﻿
+﻿<h1>Edit Employee</h1>
+<body>
+
+    <div>
+        Name: <input type="text" ng-model="Employee.Name" />
+    </div>
+    <div>
+        Age: <input type="text" ng-model="Employee.Age"/>
+    </div>
+    <div>
+        Phone Number: <input type="text" ng-model="Employee.PhoneNumber" />
+    </div>
+    <div>
+        Email: <input type="text" ng-model="Employee.Email" />
+    </div>
+    <div>
+        Date of Birth <input type="date" ng-model="Employee.DOB"/>
+    </div>
+    <div> 
+        Gender: <input type="radio" value="true" ng-model="Employee.isMale"/>Male
+                <input type="radio" value="false" ng-model="Employee.isMale" />Female
+    </div>
+    <div>
+        State: @*<select ng-model="Employee.state">
+                    <option ng-repeat="Sta in States" value="Sta" ng-selected="Employee.state=Sta">{{Sta.state}}</option>
+               </select>*@
+               <select ng-model="Employee.state" ng-options="Sta.state for Sta in States" >              
+               </select>
+    </div>
+    <div>
+        <input type="button" value="Edit" data-ng-click="FinalEdit()" />
+        <input type="button" value="Return" data-ng-click="ReturnToList()" />
+    </div>
+</body>

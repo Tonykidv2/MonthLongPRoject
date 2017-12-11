@@ -109,6 +109,7 @@ namespace DatabaseService.Controllers
         [Route("api/employee/{id}")]
         public bool Put(int id, [FromBody]EmployeeModel value)
         {
+            bool check = ModelState.IsValid;
             try
             {
                 Employee TobeUpdated = dbContext.Employees.Find(value.ID);
@@ -121,7 +122,7 @@ namespace DatabaseService.Controllers
                     TobeUpdated.State1 = dbContext.States.Single(s => s.StateID == value.state.ID);
                     TobeUpdated.Email = value.Email;
                     TobeUpdated.IsMale = value.isMale;
-                    TobeUpdated.Name = TobeUpdated.Name;
+                    TobeUpdated.Name = value.Name;
                     TobeUpdated.PhoneNumber = value.PhoneNumber;
 
                     dbContext.SaveChanges();

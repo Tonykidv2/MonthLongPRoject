@@ -151,6 +151,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="MyScripts\DeleteEmployeeController.js" />
+    <Content Include="MyScripts\EditEmployeeController.js" />
     <Content Include="MyScripts\Services.js" />
     <Content Include="MyScripts\ShowEmployeesController.js" />
     <Content Include="MyScripts\ShowStatesController.js" />
