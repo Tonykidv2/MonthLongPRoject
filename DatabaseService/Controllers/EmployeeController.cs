@@ -81,6 +81,7 @@ namespace DatabaseService.Controllers
         [HttpPost]
         public bool Post([FromBody]EmployeeModel value)
         {
+            bool check = ModelState.IsValid;
             try
             {
                 Employee emp = new Employee()

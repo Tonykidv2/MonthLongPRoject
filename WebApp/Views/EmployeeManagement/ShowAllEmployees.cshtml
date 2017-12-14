@@ -1,26 +1,41 @@
 ﻿<h1> Show All Employees</h1>
-<div>
-    Search By Age <input type="text" ng-model="SearchAge" /> {{SearchAge}}
-</div>
-<div>
-    Search By Name <input type="text" ng-model="SearchName" /> {{SearchName}}
-</div>
-<div>
-    Search By Phone Number <input type="text" ng-model="SearchNumber" /> {{SearchNumber}}
-</div>
-@*<div>
-    Search By Gender <input type="text" ng-model="SearchGen" /> {{SearchGen}}
-</div>*@
-<div>
-    Search By State <input type="text" ng-model="SearchState" /> {{SearchState}}
-</div>
-<div>
-    Search By ID <input type="text" ng-model="SearchID" /> {{SearchID}}
-</div>
+<form>
+    <div>
+        Search By Age <input type="number" ng-model="SearchAge"  maxlength="2"/> {{SearchAge}}
+    </div>
+    <div>
+        Search By Name <input type="text" ng-model="SearchName" onkeypress="return onlyAlphabets(event,this);"/> {{SearchName}}
+    </div>
+    <div>
+        Search By Phone Number <input type="tel" ng-model="SearchNumber" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/> {{SearchNumber}}
+    </div>
+    <div>
+        Gender: <input type="radio" value="true" ng-model="SearchGen" />Male
+                <input type="radio" value="false" ng-model="SearchGen" />Female
+    </div>
+    <div>
+        Search By State <input type="text" ng-model="SearchState" onkeypress="return onlyAlphabets(event,this);" maxlength="2"/> {{SearchState}}
+    </div>
+    <div>
+        Search By ID <input type="number" ng-model="SearchID"/> {{SearchID}}
+    </div>
+    <div>
+        <input type="reset" value="Reset" ng-click="Reset()"/>
+    </div>
+</form>
+
+<select ng-model='limit' ng-change="ResetPage()">
+    <option value='5'>Show 5 per page</option>
+    <option value='10'>Show 10 per page</option>
+    <option value='15'>Show 15 per page</option>
+    <option value='20'>Show 20 per page</option>
+    <option value="100000000">ALL</option>
+</select>
+
 <table align="center">
     <thead>
         <tr>
-            <th align="center"> ID </th>
+            <th align="center">ID</th>
             <th align="center">Name</th>
             <th align="center">Email</th>
             <th align="center">Phone Number</th>
@@ -31,8 +46,9 @@
             <th align="center">Actions</th>
         </tr>
     </thead>
+    
     <tbody>
-        <tr data-ng-repeat="Emp in Employees | filter:{Age: SearchAge, state:{state: SearchState}, ID: SearchID, Name: SearchName, PhoneNumber: SearchNumber }">
+        <tr data-ng-repeat="Emp in Employees | filter:{Age: SearchAge, state:{state: SearchState}, ID: SearchID, Name: SearchName, PhoneNumber: SearchNumber, isMale: SearchGen }| startFrom:currentPage*limit | limitTo: limit">
             <td align="center">{{Emp.ID}}</td>
             <td align="center">{{Emp.Name}}</td>
             <td align="center">{{Emp.Email}}</td>
@@ -49,3 +65,5 @@
         </tr>
     </tbody>
 </table>
+<button ng-disabled="currentPage == 0" ng-click="prevPage()" >Previous</button>
+<button ng-disabled="currentPage >= Employees.length/limit - 1" ng-click="nextPage()">Next</button>

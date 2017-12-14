@@ -41,4 +41,8 @@
         $location.path("/showemployees");
     };
 
+    $scope.Reset = function () {
+        $scope.SearchAge = "";
+        ngModel.$setPristine();
+    };
 });
