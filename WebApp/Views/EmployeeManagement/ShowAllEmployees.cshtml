@@ -1,89 +1,21 @@
 ﻿<h1> Show All Employees</h1>
 
-<form name="userForm">
-    <div>
-        <div layout align="left">
-            <md-input-container class="md-block" flex-gt-sm>
-                <label>Name:</label>
-                <input type="text" required/>
-            </md-input-container>
-            
-            <md-input-container class="md-block" flex-gt-sm>
-                <label>Phone Number:</label>
-                <input required name="phone" ng-model="phoney" ng-pattern="/^[(][0-9]{3}[)] [0-9]{3}-[0-9]{4}$/" />
-                
-                <div ng-messages="userForm.phone.$error" ng-if="showHints">
-                    <div ng-message="pattern">(###) ###-#### - Please enter a valid phone number.</div>
-                </div>
-            </md-input-container>
-            <style>
-                     /*
-                * The Material demos system does not currently allow targeting the body element, so this
-                * must go here in the HTML.
-                */
-                     body[dir=rtl] .hint {
-                         right: 2px;
-                         left: auto;
-                     }
-            </style>
-            <md-datepicker ng-model="birthday"></md-datepicker>
-        </div>
-        <div layout align="left">
-            <md-radio-group layout="row" class="md-block" flex-gt-sm>
-                <label>Gender:</label>
-                <md-radio-button value="1">Male</md-radio-button>
-                <md-radio-button value="0">Female</md-radio-button>
-            </md-radio-group>
-            <md-slider-container class="md-block" flex-gt-sm>
-                <label>Age:</label>
-                <md-slider flex ng-model="SliderAge" min="0" max="100" aria-label="regular slider"></md-slider> {{SliderAge}}
-            </md-slider-container>
-            <md-input-container class="md-block" flex-gt-sm>
-                <label>Email:</label>
-                <input type="email" ng-model="emails"  required minlength="10" maxlength="100" ng-pattern="/^.+.+\..+$/"  />
-                <div ng-messages="userForm.email.$error">
-                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
-                        Your email must be between 10 and 100 characters long and look like an e-mail address.
-                    </div>
-                </div>
-            </md-input-container>
-        </div>
-        <div layout align="left">
-            <md-input-container class="md-block" flex-gt-sm>
-                <label>Choose Educations</label>
-                <md-select ng-model="eduS" >
-                    <md-option ng-repeat="edu in Educations" ng-value="edu.eduType">{{edu.eduType}}</md-option>
-                </md-select>
-            </md-input-container>
-
-            <md-input-container class="md-block" flex-gt-sm>
-                <label>State</label>
-                <md-select ng-model="SState">
-                    <md-option><em>None</em></md-option>
-                    <md-option ng-repeat="sta in States" ng-value="sta">{{sta.state}}</md-option>
-                </md-select>
-            </md-input-container>
-
-        </div>
-    </div>
-    <div align="center">
-        <md-button class="md-raised" data-ng-click="Add()">Add</md-button>
-        <md-button class="md-raised" data-ng-click="Edit(Emp.ID)">Update</md-button>
-        <md-button class="md-raised" data-ng-click="Delete(Emp.ID)">Delete</md-button>
-    </div>
-</form>
 <form>
     <div>
         Search By Age <input  type="number" ng-model="SearchAge"  maxlength="2"/> {{SearchAge}}
     </div>
     <div>
-        Search By Name 
-        <md-form-field class="example-full-width">
-            <input mdInput type="text" placeholder="Full Name" ng-model="SearchName" onkeypress="return onlyAlphabets(event,this);" /> 
-        </md-form-field> {{SearchName}}
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>Search by Name:</label>
+            <input type="text" ng-model="SearchName" />
+        </md-input-container>
+        {{SearchName}}
     </div>
     <div>
-        Search By Phone Number <input type="tel" ng-model="SearchNumber" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/> {{SearchNumber}}
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>Search by Number:</label>
+            <input type="number" ng-model="SearchNumber" />
+        </md-input-container>{{SearchNumber}}
     </div>
     <div>
         Gender: <input type="radio" value="true" ng-model="SearchGen" />Male

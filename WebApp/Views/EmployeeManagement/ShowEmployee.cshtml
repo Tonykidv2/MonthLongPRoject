@@ -48,7 +48,7 @@
         <div layout align="left">
             <md-input-container class="md-block" flex-gt-sm>
                 <label>Choose Educations</label>
-                <md-select ng-model="eduS">
+                <md-select ng-model="eduS" multiple>
                     <md-option ng-repeat="edu in Educations" ng-value="edu.eduType">{{edu.eduType}}</md-option>
                 </md-select>
             </md-input-container>
