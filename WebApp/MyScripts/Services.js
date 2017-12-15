@@ -9,6 +9,10 @@
         return some;
     };
 
+    this.getEducations = function () {
+        return $http.get("http://localhost:6086/api/education/getall");
+    };
+
     this.getEmployee = function (id) {
         return $http.get("http://localhost:6086/api/employee/" + id);
     };

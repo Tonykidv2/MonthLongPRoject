@@ -1,4 +1,4 @@
-﻿var app = angular.module("myApp", ["ngRoute"]);
+﻿var app = angular.module("myApp", ["ngRoute", 'ngMaterial', 'ngMessages']);
 
 app.factory("SharedData", function () {
     return { value: 1};

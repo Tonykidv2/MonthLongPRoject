@@ -26,6 +26,18 @@ namespace WebApp
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            //Material bundles
+            //bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+            //        "~/bundles/angular.js",
+            //        "~/bundles/angular-animate.js",
+            //        "~/bundles/angular-aria.js",
+            //        "~/bundles/angular-material.js"));
+
+            //bundles.Add(new StyleBundle("~/Content/css").Include(
+            //      "~/Content/bootstrap.css",
+            //      "~/Content/angular-material/angular-material.css",
+            //      "~/Content/site.css"));
         }
     }
 }

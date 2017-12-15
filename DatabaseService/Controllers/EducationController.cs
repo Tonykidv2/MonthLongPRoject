@@ -5,13 +5,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using WebApplication1.Model;
 
 namespace DatabaseService.Controllers
 {
     [Route("api/Education/")]
-    [AllowAnonymous]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class EducationController : ApiController
     {
         EmployeeManagementContext dbContext = new EmployeeManagementContext();
@@ -38,11 +39,11 @@ namespace DatabaseService.Controllers
                     eduType = eduList[i].Name,
                     ID = eduList[i].EducationID
                 };
-                for (int z = 0; z < eduList[i].Employees.Count; z++)
-                {
-                    EmployeeModel empMod = empCon.Get(eduList[i].Employees.ToList()[z].EmployeeID);
-                    Mod.employees.Add(empMod);
-                }
+                //for (int z = 0; z < eduList[i].Employees.Count; z++)
+                //{
+                //    EmployeeModel empMod = empCon.Get(eduList[i].Employees.ToList()[z].EmployeeID);
+                //    Mod.employees.Add(empMod);
+                //}
                 eduMList.Add(Mod);
             }
             return Request.CreateResponse(HttpStatusCode.OK, eduMList);

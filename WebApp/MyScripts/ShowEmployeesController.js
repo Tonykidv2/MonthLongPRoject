@@ -4,6 +4,7 @@
     loadAllEmployees();
     $scope.currentPage = 0;
     $scope.pageSize = 10;
+    $scope.showHints = true;
     $scope.numberOfPages = function () {
         return Math.ceil($scope.Employees.length / $scope.pageSize);
     };
@@ -17,10 +18,36 @@
             $scope.Employees = respond.data;
         }
     };
+    loadAllStates();
+    function loadAllStates() {
+        var promiseGetEmployees = SPAServices.getStates(SharedData.value).
+            then(SuccessError);
+
+
+        function SuccessError(respond) {
+            $scope.States = respond.data;
+        }
+    };
+
+    loadAllEducations();
+    function loadAllEducations() {
+        var promiseGetEmployees = SPAServices.getEducations().
+            then(SuccessError);
+
+
+        function SuccessError(respond) {
+            $scope.Educations = respond.data;
+        }
+    };
 
     $scope.editEmployee = function (id) {
         SharedData.value = id;
         $location.path("/editEmployee");
+    };
+
+    $scope.ShowEmployee = function (id) {
+        SharedData.value = id;
+        $location.path("/ShowEmployee");
     };
 
     $scope.deleteEmployee = function (id) {
@@ -59,6 +86,12 @@
         }
     };
 
+    $scope.user = {
+        name: "",
+        email: "",
+        social: "123456789",
+        phone: ""
+    };
 });
 
 function onlyAlphabets(e, t) {
