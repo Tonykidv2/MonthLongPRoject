@@ -1,21 +1,24 @@
 ﻿app.controller('ShowEmployeesController', function ($scope, $location, SPAServices, SharedData) {
 
     $scope.Employees = []
-    loadAllEmployees();
     $scope.currentPage = 0;
     $scope.pageSize = 10;
     $scope.showHints = true;
+    $scope.isLoading = false;
+    loadAllEmployees();
     $scope.numberOfPages = function () {
         return Math.ceil($scope.Employees.length / $scope.pageSize);
     };
 
     function loadAllEmployees() {
+        $scope.isLoading = true;
         var promiseGetEmployees = SPAServices.getEmployees(SharedData.value).
             then(SuccessError);
 
 
         function SuccessError(respond) {
             $scope.Employees = respond.data;
+            $scope.isLoading = false;
         }
     };
     loadAllStates();
