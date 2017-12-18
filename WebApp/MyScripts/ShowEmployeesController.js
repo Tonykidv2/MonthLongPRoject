@@ -47,7 +47,7 @@
 
     $scope.ShowEmployee = function (id) {
         SharedData.value = id;
-        $location.path("/ShowEmployee");
+        $location.path("/showemployee");
     };
 
     $scope.deleteEmployee = function (id) {

@@ -21,7 +21,7 @@ namespace EFDatabase.TBL
         }
     
         public int EmployeeID { get; set; }
-        public Nullable<int> PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public System.DateTime DateofBirth { get; set; }
         public int Age { get; set; }

@@ -20,6 +20,11 @@ namespace WebApp.Controllers
         {
             return PartialView("ShowAllEmployees");
         }
+        public ActionResult ShowingEmployee()
+        {
+            return PartialView("ShowEmployee");
+        }
+
         public ActionResult ShowStates()
         {
             return PartialView("ShowAllStates");

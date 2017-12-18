@@ -1,7 +1,7 @@
 ﻿var app = angular.module("myApp", ["ngRoute", 'ngMaterial', 'ngMessages']);
 
 app.factory("SharedData", function () {
-    return { value: 1};
+    return { value: 0};
 });
 
 app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
@@ -11,6 +11,11 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
         {
             templateUrl: 'EmployeeManagement/ShowEmployees',
             controller: 'ShowEmployeesController'
+        });
+    $routeProvider.when('/showemployee',
+        {
+            templateUrl: 'EmployeeManagement/ShowingEmployee',
+            controller: 'ShowEmployeeController'
         });
     $routeProvider.when('/showstates',
         {

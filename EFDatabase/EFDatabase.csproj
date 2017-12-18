@@ -55,6 +55,10 @@
     <Compile Include="Migrations\201712011554376_initial.Designer.cs">
       <DependentUpon>201712011554376_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712181644432_changing_phonenumber_to_string.cs" />
+    <Compile Include="Migrations\201712181644432_changing_phonenumber_to_string.Designer.cs">
+      <DependentUpon>201712181644432_changing_phonenumber_to_string.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TBL\DBContext.Context.cs">
@@ -97,6 +101,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201712011554376_initial.resx">
       <DependentUpon>201712011554376_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712181644432_changing_phonenumber_to_string.resx">
+      <DependentUpon>201712181644432_changing_phonenumber_to_string.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

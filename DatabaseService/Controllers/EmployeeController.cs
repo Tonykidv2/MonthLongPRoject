@@ -34,11 +34,22 @@ namespace DatabaseService.Controllers
                 ID = id,
                 Name = emp.Name,
                 Email = emp.Email,
-                PhoneNumber = (int)emp.PhoneNumber,
+                PhoneNumber = emp.PhoneNumber,
                 Age = emp.Age,
                 DOB = emp.DateofBirth,
-                state = new StateModel() { ID = emp.State1.StateID, state = emp.State1.Name }
+                state = new StateModel() { ID = emp.State1.StateID, state = emp.State1.Name },
+                isMale = emp.IsMale
             };
+
+            List<Education> edu = emp.Educations.ToList();
+            foreach (var item in edu)
+            {
+                empModel.edu.Add(new EducationModel()
+                {
+                    eduType = item.Name,
+                    ID = item.EducationID
+                });
+            }
             return empModel;
         }
 
@@ -61,7 +72,7 @@ namespace DatabaseService.Controllers
                     Mod.ID = empList[i].EmployeeID;
                     Mod.isMale = empList[i].IsMale;
                     Mod.Name = empList[i].Name;
-                    Mod.PhoneNumber = (int)empList[i].PhoneNumber;
+                    Mod.PhoneNumber = empList[i].PhoneNumber;
                     Mod.state = new StateModel() { ID = empList[i].State1.StateID, state = empList[i].State1.Name };
 
                     empMList.Add(Mod);
@@ -82,6 +93,8 @@ namespace DatabaseService.Controllers
         public bool Post([FromBody]EmployeeModel value)
         {
             bool check = ModelState.IsValid;
+            if (!check)
+                return false;
             try
             {
                 Employee emp = new Employee()
@@ -95,6 +108,10 @@ namespace DatabaseService.Controllers
                     State = value.state.ID,
                     State1 = dbContext.States.Single(p => p.StateID == value.state.ID)
                 };
+                foreach (var item in value.edu)
+                {
+                    emp.Educations.Add(dbContext.Educations.Find(item.ID));
+                }
                 dbContext.Employees.Add(emp);
                 dbContext.SaveChanges();
                 return true;
@@ -111,6 +128,8 @@ namespace DatabaseService.Controllers
         public bool Put(int id, [FromBody]EmployeeModel value)
         {
             bool check = ModelState.IsValid;
+            if (!check)
+                return false;
             try
             {
                 Employee TobeUpdated = dbContext.Employees.Find(value.ID);
@@ -120,12 +139,16 @@ namespace DatabaseService.Controllers
                     TobeUpdated.Age = value.Age;
                     TobeUpdated.DateofBirth = value.DOB;
                     TobeUpdated.State = value.state.ID;
-                    TobeUpdated.State1 = dbContext.States.Single(s => s.StateID == value.state.ID);
+                    TobeUpdated.State1 = dbContext.States.Find(value.state.ID);
                     TobeUpdated.Email = value.Email;
                     TobeUpdated.IsMale = value.isMale;
                     TobeUpdated.Name = value.Name;
                     TobeUpdated.PhoneNumber = value.PhoneNumber;
-
+                    TobeUpdated.Educations.Clear();
+                    foreach (var item in value.edu)
+                    {
+                        TobeUpdated.Educations.Add(dbContext.Educations.Find(item.ID));
+                    }
                     dbContext.SaveChanges();
                     return true;
                 }

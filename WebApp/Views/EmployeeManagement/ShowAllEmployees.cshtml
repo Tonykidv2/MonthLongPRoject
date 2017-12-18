@@ -2,30 +2,38 @@
 
 <form>
     <div>
-        Search By Age <input  type="number" ng-model="SearchAge"  maxlength="2"/> {{SearchAge}}
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>Search by Age:</label>
+            <input type="number" ng-model="SearchAge" />
+        </md-input-container>
     </div>
     <div>
         <md-input-container class="md-block" flex-gt-sm>
             <label>Search by Name:</label>
             <input type="text" ng-model="SearchName" />
         </md-input-container>
-        {{SearchName}}
     </div>
     <div>
         <md-input-container class="md-block" flex-gt-sm>
-            <label>Search by Number:</label>
+            <label>Search by Phone Number:</label>
             <input type="number" ng-model="SearchNumber" />
-        </md-input-container>{{SearchNumber}}
+        </md-input-container>
     </div>
     <div>
         Gender: <input type="radio" value="true" ng-model="SearchGen" />Male
                 <input type="radio" value="false" ng-model="SearchGen" />Female
     </div>
+    <div> 
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>Search by State:</label>
+            <input type="text" ng-model="SearchState" onkeypress="return onlyAlphabets(event,this);" maxlength="2"/>{{SearchState}}
+        </md-input-container>
+</div>
     <div>
-        Search By State <input type="text" ng-model="SearchState" onkeypress="return onlyAlphabets(event,this);" maxlength="2"/> {{SearchState}}
-    </div>
-    <div>
-        Search By ID <input type="number" ng-model="SearchID"/> {{SearchID}}
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>Search by ID:</label>
+            <input type="number" ng-model="SearchID" />
+        </md-input-container>
     </div>
     <div>
         <input type="reset" value="Reset" ng-click="Reset()"/>
