@@ -51,7 +51,7 @@
 
         function SuccessError(respond) {
             $scope.errorCheck = respond.data;
-            if ($scope.errorCheck == true) {
+            if ($scope.errorCheck == "Completed") {
                 SharedData.value = 0;
                 $location.path("/showemployees");
             }
@@ -64,7 +64,7 @@
 
         function SuccessError(respond) {
             $scope.errorCheck = respond.data;
-            if ($scope.errorCheck == true) {
+            if ($scope.errorCheck == "Entry Updated") {
                 SharedData.value = 0;
                 $location.path("/showemployees");
             }
@@ -77,7 +77,7 @@
 
         function SuccessError(respond) {
             $scope.errorCheck = respond.data;
-            if (errorCheck == "Entry Delete")
+            if ($scope.errorCheck == "Entry Delete")
             {
                 SharedData.value = 0;
                 $location.path("/showemployees");}

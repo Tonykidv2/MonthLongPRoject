@@ -90,11 +90,11 @@ namespace DatabaseService.Controllers
 
         // POST api/<controller>
         [HttpPost]
-        public bool Post([FromBody]EmployeeModel value)
+        public HttpResponseMessage Post([FromBody]EmployeeModel value)
         {
             bool check = ModelState.IsValid;
             if (!check)
-                return false;
+                return Request.CreateResponse(HttpStatusCode.OK, "Required ALL Information");
             try
             {
                 Employee emp = new Employee()
@@ -114,22 +114,22 @@ namespace DatabaseService.Controllers
                 }
                 dbContext.Employees.Add(emp);
                 dbContext.SaveChanges();
-                return true;
+                return Request.CreateResponse(HttpStatusCode.OK, "Completed");
             }
             catch
             {
-                return false;
+                return Request.CreateResponse(HttpStatusCode.OK, "Something Went Wrong!");
             }
         }
 
         // PUT api/<controller>/5
         [HttpPut]
         [Route("api/employee/{id}")]
-        public bool Put(int id, [FromBody]EmployeeModel value)
+        public HttpResponseMessage Put(int id, [FromBody]EmployeeModel value)
         {
             bool check = ModelState.IsValid;
             if (!check)
-                return false;
+                return Request.CreateResponse(HttpStatusCode.BadRequest, "Require ALL Information");
             try
             {
                 Employee TobeUpdated = dbContext.Employees.Find(value.ID);
@@ -150,14 +150,14 @@ namespace DatabaseService.Controllers
                         TobeUpdated.Educations.Add(dbContext.Educations.Find(item.ID));
                     }
                     dbContext.SaveChanges();
-                    return true;
+                    return Request.CreateResponse(HttpStatusCode.OK, "Entry Updated");
                 }
             }
             catch
             {
-                return false;
+                return Request.CreateResponse(HttpStatusCode.OK, "Something Went Wrong!");
             }
-            return false;
+            return Request.CreateResponse(HttpStatusCode.OK, "Completed?");
         }
 
         // DELETE api/<controller>/5
@@ -176,12 +176,12 @@ namespace DatabaseService.Controllers
                     return Request.CreateResponse(HttpStatusCode.OK, "Entry Delete");
                 }
                 else
-                    return Request.CreateResponse(HttpStatusCode.NotFound, "Nothing Deleted");
+                    return Request.CreateResponse(HttpStatusCode.OK, "Nothing Deleted");
 
             }
             catch
             {
-                return Request.CreateResponse(HttpStatusCode.Conflict, "Error");
+                return Request.CreateResponse(HttpStatusCode.OK, "Error");
             }
         }
 
