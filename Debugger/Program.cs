@@ -30,7 +30,7 @@ namespace Debugger
                     emp.IsMale = true;
                 else
                     emp.IsMale = false;
-                emp.PhoneNumber = rnd.Next(1231234, 3214321);
+                //emp.PhoneNumber = rnd.Next(1231234, 3214321);
                 emp.Age = rnd.Next(18, 50);
                 emp.DateofBirth = DateTime.Now;
                 emp.Email = "Something00" + i + "@infoSys.com";

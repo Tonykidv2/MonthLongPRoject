@@ -4,17 +4,17 @@
 <h4>{{errorCheck}}</h4>
 <form name="userForm">
     <div>
-        <div layout align="left">
-            <md-input-container class="md-block" flex-gt-sm>
+        <div layout @*align="left"*@>
+            <md-input-container class="md-block" align="left" flex>
                 <label>Name:</label>
                 <input type="text" required ng-model="Employee.Name"/>
             </md-input-container>
             
-            <md-input-container class="md-block" flex-gt-sm>
-                <label>Phone Number:</label>
+            <md-input-container class="md-block" align="center" flex>
+                <label align="left">Phone Number:</label>
                 <input required name="phone" ng-model="Employee.PhoneNumber" ng-pattern="/^[(][0-9]{3}[)] [0-9]{3}-[0-9]{4}$/" />
 
-                <div ng-messages="userForm.phone.$error" >
+                <div ng-messages="userForm.phone.$error" align="left">
                     <div ng-message="pattern">(###) ###-#### - Please enter a valid phone number.</div>
                 </div>
             </md-input-container>
@@ -24,42 +24,43 @@
                     left: auto;
                 }
             </style>
-            <md-datepicker ng-model="Employee.DOB"></md-datepicker>
+            <md-datepicker class="customstyleCal" ng-model="Employee.DOB" align="right" flex>Date of Birth</md-datepicker>
         </div>
-        <div layout align="left">
-            <md-radio-group layout="row" class="md-block" flex-gt-sm ng-model="Employee.isMale">
+        <div layout @*align="left"*@ class="customRow">
+            <md-radio-group layout="row" flex class="md-primary" ng-model="Employee.isMale" align="left">
                 <label>Gender:</label>
-                <md-radio-button value="true" ng-model="Employee.isMale">Male</md-radio-button>
-                <md-radio-button value="false" ng-model="Employee.isMale">Female</md-radio-button>
+                <md-radio-button class="customstyle" value="true" ng-model="Employee.isMale" ng-style="{'display':'inline'}">Male</md-radio-button>
+                <md-radio-button class="customstyle" value="false" ng-model="Employee.isMale" ng-style="{'display':'inline'}">Female</md-radio-button>
             </md-radio-group>
-            <md-slider-container class="md-block" flex-gt-sm>
+            <md-slider-container class="customAge" align="center" flex>
                 <label>Age:</label>
                 <md-slider flex ng-model="Employee.Age" min="0" max="100" aria-label="regular slider"></md-slider> {{Employee.Age}}
             </md-slider-container>
-            <md-input-container class="md-block" flex-gt-sm>
-                <label>Email:</label>
-                <input type="email" ng-model="Employee.Email" required minlength="10" maxlength="100" ng-pattern="/^.+.+\..+$/" />
-                <div ng-messages="userForm.email.$error">
-                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
-                        Your email must be between 10 and 100 characters long and look like an e-mail address.
+            <md-input-container class="customEmail" align="right" flex>
+                <label align="left">Email:</label>
+                <input name="email" align="right" flex type="email" ng-model="Employee.Email" required minlength="10" maxlength="100" ng-pattern="/^.+.+\..+$/" />
+                <div ng-messages="userForm.email.$error" align="left">
+                    <div ng-messages="userForm.email.$error" @*ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']"*@>
+                        <div ng-message="pattern">Your entry doesn't follow an email pattern</div>
                     </div>
                 </div>
             </md-input-container>
         </div>
         <div layout align="left">
-            <md-input-container class="md-block" flex-gt-sm>
+            <md-input-container class="customList" flex>
                 <label>Choose Educations</label>
                 <md-select ng-model="Employee.edu" multiple>
                     <md-option ng-repeat="edu in Educations" ng-value="edu">{{edu.eduType}}</md-option>
                 </md-select>
             </md-input-container>
 
-            @*<md-list-item ng-repeat="edu in Educations" >
-                <p>{{edu.eduType}}</p>
-                <md-checkbox class="md-secondary" ng-model="Employee.edu"></md-checkbox>
-            </md-list-item>*@
+                        @*<md-list-item ng-repeat="edu in Educations" >
+            flex-gt-sm
+            <p>{{edu.eduType}}</p>
+            <md-checkbox class="md-secondary" ng-model="Employee.edu"></md-checkbox>
+        </md-list-item>*@
 
-            <md-input-container class="md-block" flex-gt-sm>
+            <md-input-container class="customList" flex>
                 <label>State</label>
                 <md-select ng-model="Employee.state">
                     <md-option><em>None</em></md-option>

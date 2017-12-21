@@ -5,7 +5,7 @@ app.factory("SharedData", function () {
 });
 
 app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
-    debugger;
+   
 
     $routeProvider.when('/showemployees',
         {

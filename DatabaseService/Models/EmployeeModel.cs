@@ -20,6 +20,7 @@ namespace WebApplication1.Model
         [EmailAddress]
         public string Email { get; set; }
         [Required]
+        [Phone]
         public string PhoneNumber { get; set; }
         public int Age { get; set; }
         [Required]

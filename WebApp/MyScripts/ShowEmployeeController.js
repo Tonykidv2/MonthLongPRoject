@@ -46,6 +46,10 @@
     };
 
     $scope.AddEmployee = function () {
+        if (!$scope.userForm.$valid) {
+            $scope.errorCheck = "Form Invalid";
+            return;
+        }
         SPAServices.postEmployee($scope.Employee).
             then(SuccessError);
 
@@ -59,6 +63,12 @@
     };
 
     $scope.EditEmployee = function () {
+        if (!$scope.userForm.$valid)
+        {
+            $scope.errorCheck = "Form Invalid";
+            return;
+        }
+
         SPAServices.putEmployee(SharedData.value, $scope.Employee).
             then(SuccessError);
 

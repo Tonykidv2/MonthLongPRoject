@@ -78,6 +78,42 @@ h1 {
       text-align: center;
       width:100%
  }
+.customstyle {
+    display: inline;
+    height: 25px;
+    margin-bottom: 0px;
+    left: 5px;
+}
+.customRow {
+    margin-top: 0px;
+    height: 75px;
+    border-top-width: 15px;
+    padding-top: 15px;
+}
+.customEmail {
+    width: 300px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    height: 50px;
+    left: 5px;
+    padding-left: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+}
+.customstyleCal {
+    margin-right: 0px;
+    padding-right: 0px;
+    height: 50px;
+    margin-top: 13px;
+}
+.customList {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.customAge {
+    height: 15px;
+}
 .containingEle{
     display: inline-block;
     display: -moz-inline-box;
